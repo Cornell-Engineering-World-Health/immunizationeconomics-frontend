@@ -53,7 +53,7 @@ export default class App extends React.Component {
 
   filterResults = (row) => {
     let contains = false
-    for (const key of column_names) {
+    for (const key of ["Description", "Location", "Job"]) {
       contains = contains || row[key].toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase());
     }
 
@@ -104,7 +104,6 @@ const DataRow = props => {
       <div> {"Location"}{":    "} {props["Location"]} </div>
       <div> {"Type"}{":    "} {props["Type"]} </div>
       <div> {"Organization"} {":    "} {props["Organization"]} </div>
-      <br />
 
       <div className="data-row-description" dangerouslySetInnerHTML={{ __html: props["Description"] }} />
     </div>
