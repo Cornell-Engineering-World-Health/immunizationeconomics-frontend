@@ -80,7 +80,7 @@ export default class App extends React.Component {
 const DataRow = props => {
   return (
     <div className="data-row-container">
-      <a id={1} target="_blank" rel="noopener noreferrer" href={props["Page Url"]}> {"Jump to Job Listing Here (takes you to external page)"}</a>
+      <a id={1} target="_blank" rel="noopener noreferrer" href={props["Page Url"]}> {"Jump to Job Listing (takes you to external page)"}</a>
       <div id={2}> {"Job"} {":    "} {props["Job"]} </div>
       <div id={3}> {"Location"} {":    "} {props["Location"]} </div>
       <div id={4}> {"Type"} {":    "} {props["Type"]} </div>
