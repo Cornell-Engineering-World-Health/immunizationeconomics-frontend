@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.data-row-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+}
+
+.data-row-description {
+  margin-top: 20px;
+  overflow-y:scroll;
+  max-height: 200px;
+}
+
+/* .MuiDataGrid-viewport,.MuiDataGrid-row,.MuiDataGrid-renderingZone{
+  max-height: fit-content!important;
+  }
+  .MuiDataGrid-cell{
+  max-height:fit-content!important;
+  overflow:auto;
+  max-height: inherit;
+  white-space: initial!important;
+  line-height:16px!important;
+  display:flex!important;
+  align-items: center;
+  padding-top: 10px!important;
+  padding-bottom: 100px!important;
+  } */
+
+  /* .div{
+    max-height: inherit;
+    width: 100%;
+    white-space: initial;
+    line-height:16px;
+  } */
