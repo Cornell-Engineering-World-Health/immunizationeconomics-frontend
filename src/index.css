@@ -113,6 +113,10 @@ code {
   padding: 10px 20px 20px 10px!important;
 }
 
+.MuiDataGrid-cell:hover{
+  cursor: pointer;
+}
+
 [role="columnheader"][aria-colindex="1"], [role="columnheader"][aria-colindex="2"],
 div[data-field="job"], div[aria-colindex="0"], div[data-field="location"], div[aria-colindex="1"] {
   min-width: 250px!important;
