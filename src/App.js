@@ -40,7 +40,7 @@ export default class App extends React.Component {
     let data = manual_values.slice(1, manual_values.length).concat(webscraper_values.slice(1, webscraper_values.length));
 
     let result = [];
-    for (let i = 1; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       let rowObject = { id: i };
       for (let j = 0; j < column_names.length; j++) {
         rowObject[column_names[j]] = data[i][j];

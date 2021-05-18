@@ -50,6 +50,8 @@ code {
   margin-top: 10px;
   padding: 40px;
   background-color: white;
+  white-space: pre-line;
+
 }
 
 /* Search button */
@@ -111,6 +113,10 @@ code {
   white-space: nowrap!important;
   line-height: 18px!important;
   padding: 10px 0px 20px 10px!important;
+}
+
+.MuiDataGrid-cell:hover{
+  cursor: pointer;
 }
 
 [role="columnheader"][aria-colindex="1"], [role="columnheader"][aria-colindex="2"],
