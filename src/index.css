@@ -12,16 +12,114 @@ code {
     monospace;
 }
 
+.table {
+  margin-top: 20px;
+}
+
+.ReactModal__Content{
+  padding: 0px!important;
+  background-color: black!important;
+}
+
 .data-row-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
-  margin: 20px;
+  padding: 70px;
+  margin: 2px;
+  background-color: #C7D6D6;
+}
+
+.data-header {
+  background-color: #222E2E;
+  opacity: 85%;
+  color: white;
+  padding: 15px 45px;
+  border: 1px solid #222E2E;
+  line-height: 22px;
+}
+
+.data-header a{
+  color: white;
+  font-style: italic;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .data-row-description {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 40px;
+  background-color: white;
+}
+
+/* Search button */
+.react-search-field-input {
+  height: 25px!important;
+  width: 100%!important;
+}
+
+.react-search-field{
+  height: 50px!important;
+  width: 100%!important;
+}
+
+.react-search-field-button {
+  background-color: #222E2E!important;
+  color: white!important;
+  height: 50px!important;
+  width: 50px!important;
+}
+
+.react-search-field-button svg{
+  fill: white!important;
+  height: 25px!important;
+  width: 25px!important;
+}
+
+/* Table Row Styling */
+.MuiDataGrid-colCellWrapper {
+  background-color: #222E2E;
+  color: white;
+}
+
+.MuiDataGrid-colCellSortable {
+  border-left: 1.5px solid white!important;
+}
+
+.Mui-even {
+  background-color: #C7D6D6!important;
+}
+
+.MuiDataGrid-colCellTitle {
+  font-weight: bold!important;
+}
+
+.MuiDataGrid-iconSeparator {
+  display: none!important;
+}
+
+.MuiDataGrid-row {
+  display: block;
+  height: 50px!important;
+  max-height: 110px!important;
+  background-color: white;
+}
+
+.MuiDataGrid-cell{
+  height: 50px!important;
+  max-height: 105px!important;
+  white-space: nowrap!important;
+  line-height: 18px!important;
+  padding: 10px 20px 20px 10px!important;
+}
+
+[role="columnheader"][aria-colindex="1"], [role="columnheader"][aria-colindex="2"],
+div[data-field="job"], div[aria-colindex="0"], div[data-field="location"], div[aria-colindex="1"] {
+  min-width: 250px!important;
+  max-width: 250px!important;
+}
+
+[role="columnheader"][aria-colindex="3"], div[data-field="description"], div[aria-colindex="2"] {
+  min-width: 875px!important;
+  max-width: 875px!important;
 }

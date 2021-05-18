@@ -70,7 +70,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div style={{ height: 800, width: '100%' }}>
+        <h1 id="title" align="center">Immunization Economics Job Postings</h1>
+        <h2>Search by keyword:</h2>
         <SearchField
+          className="search"
           placeholder="Search..."
           onChange={(newValue) => this.setState({ searchValue: newValue })}
         />
@@ -83,6 +86,7 @@ export default class App extends React.Component {
           <DataRow {...this.state.selectedRow} />
         </Modal>
         <DataGrid
+          className="table"
           pageSize={25}
           onRowSelected={this.onRowSelected}
           rowHeight={52}
@@ -99,11 +103,13 @@ export default class App extends React.Component {
 const DataRow = props => {
   return (
     <div className="data-row-container">
-      <a target="_blank" rel="noopener noreferrer" href={props["Page Url"]}> {"Jump to Job Listing (takes you to external page)"}</a>
-      <div> {"Job"}{":    "} {props["Job"]} </div>
-      <div> {"Location"}{":    "} {props["Location"]} </div>
-      <div> {"Type"}{":    "} {props["Type"]} </div>
-      <div> {"Organization"} {":    "} {props["Organization"]} </div>
+      <div className="data-header">
+        <a target="_blank" rel="noopener noreferrer" href={props["Page Url"]}> {"Jump to Job Listing (takes you to external page)"}</a>
+        <div> {"Job"}{":    "} {props["Job"]} </div>
+        <div> {"Location"}{":    "} {props["Location"]} </div>
+        <div> {"Type"}{":    "} {props["Type"]} </div>
+        <div> {"Organization"} {":    "} {props["Organization"]} </div>
+      </div>
 
       <div className="data-row-description" dangerouslySetInnerHTML={{ __html: props["Description"] }} />
     </div>
