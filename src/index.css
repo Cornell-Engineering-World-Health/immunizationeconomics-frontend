@@ -133,3 +133,14 @@ div[data-field="description"], div[aria-colindex="2"] {
   min-width: 870px!important;
   max-width: 870px!important;
 }
+
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+}
+
+.basic-multi-select {
+  width: 100%;
+}
