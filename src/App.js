@@ -10,9 +10,9 @@ const column_names = ["Timestamp", "Page Url", "Job", "Location", "Type", "Descr
 
 
 const columns = [
-  { field: 'Job', headerName: 'Job', flex: 0.3 },
-  { field: 'Location', headerName: 'Location', flex: 0.3 },
-  { field: 'Description', headerName: 'Description', flex: 0.5 },
+  { field: 'Job', headerName: 'Job', flex: 0.2 },
+  { field: 'Location', headerName: 'Location', flex: 0.2 },
+  { field: 'Description', headerName: 'Description', flex: 0.7 },
 ];
 
 export default class App extends React.Component {
