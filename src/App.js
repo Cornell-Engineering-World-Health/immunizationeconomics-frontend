@@ -2,6 +2,10 @@ import React from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import SearchField from "react-search-field";
 import Modal from 'react-modal';
+import Select from "react-select";
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 const API_MANUAL = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_SPREADSHEET_ID}/values:batchGet?ranges=Manual Upload&majorDimension=ROWS&key=${process.env.REACT_APP_API_KEY}`
 const API_WEBSCRAPERS = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_SPREADSHEET_ID}/values:batchGet?ranges=Webscrapers&majorDimension=ROWS&key=${process.env.REACT_APP_API_KEY}`
@@ -15,6 +19,8 @@ const columns = [
   { field: 'Description', headerName: 'Description', flex: 0.7 },
 ];
 
+const filter_columns = ["Job", "Location", "Organization"];
+
 export default class App extends React.Component {
 
   constructor() {
@@ -23,7 +29,14 @@ export default class App extends React.Component {
       items: [],
       selectedRow: undefined,
       searchValue: "",
-      isModalOpen: false
+      isModalOpen: false,
+      filters: {},
+      selectedFilters: {}
+    }
+
+    for (const filter of filter_columns) {
+      this.state.filters[filter] = [];
+      this.state.selectedFilters[filter] = [];
     }
   }
 
@@ -48,13 +61,55 @@ export default class App extends React.Component {
       result.push(rowObject);
     }
 
-    this.setState({ items: result });
+    //generate meaningful filters
+    let filters = this.generateFilters(result);
+    this.setState({ items: result, filters: filters });
+  }
+
+  generateFilters(items) {
+    let categories = filter_columns
+
+    let filters = {}
+
+    for (const category of categories) {
+      filters[category] = []
+    }
+
+    for (const item of items) {
+      for (const category of categories) {
+        filters[category].push(item[category]);
+      }
+    }
+
+    for (const category of categories) {
+      filters[category] = [...new Set(filters[category])];
+      filters[category] = filters[category].map(elt => { return { label: elt, value: elt } });
+    }
+
+    return filters;
   }
 
   filterResults = (row) => {
+    let queries = this.state.searchValue.toLocaleLowerCase().split(";").filter(query => query !== "");
+
     let contains = false
-    for (const key of ["Description", "Location", "Job"]) {
-      contains = contains || row[key].toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase());
+
+    if (queries.length > 0) {
+      for (const query of queries) {
+        for (const key of ["Description", "Location", "Job"]) {
+          let value = row[key].toLocaleLowerCase();
+          contains = contains || value.includes(query.trim());
+        }
+      }
+    }
+    else {
+      contains = true;
+    }
+
+    for (const filter of filter_columns) {
+      if (this.state.selectedFilters[filter].length > 0 && !this.state.selectedFilters[filter].includes(row[filter])) {
+        return false;
+      }
     }
 
     return contains;
@@ -67,7 +122,14 @@ export default class App extends React.Component {
     })
   }
 
+  updateQuery = (key, filters) => {
+    let keyFilters = filters.map(elt => elt.label)
+    this.state.selectedFilters[key] = keyFilters
+    this.setState({ selectedFilters: this.state.selectedFilters });
+  }
+
   render() {
+    let items = JSON.parse(JSON.stringify(this.state.items.filter(this.filterResults)));
     return (
       <div style={{ height: 800, width: '100%' }}>
         <h1 id="title" align="center">Immunization Economics Job Postings</h1>
@@ -76,7 +138,24 @@ export default class App extends React.Component {
           className="search"
           placeholder="Search..."
           onChange={(newValue) => this.setState({ searchValue: newValue })}
+          searchText={this.state.searchValue}
         />
+        <div className="filter-bar">
+          {this.state.filters && filter_columns.map(
+            f =>
+              <Select
+                key={f}
+                isMulti
+                name="colors"
+                className="basic-multi-select"
+                classNamePrefix="select"
+                options={this.state.filters[f]}
+                components={animatedComponents}
+                placeholder={`Filter by ${f}`}
+                onChange={(filter) => this.updateQuery(f, filter)}
+              />
+          )}
+        </div>
         <Modal
           isOpen={this.state.isModalOpen}
           onRequestClose={() => this.setState({ isModalOpen: false })}
@@ -90,7 +169,7 @@ export default class App extends React.Component {
           pageSize={25}
           onRowSelected={this.onRowSelected}
           rowHeight={52}
-          rows={JSON.parse(JSON.stringify(this.state.items.filter(this.filterResults)))}
+          rows={items}
           columns={columns}
           autoHeight
           rowsPerPageOptions={[25, 50, 100]}

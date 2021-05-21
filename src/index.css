@@ -119,3 +119,14 @@ code {
 .MuiDataGrid-cell:hover{
   cursor: pointer;
 }
+
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.basic-multi-select {
+  width: 100%;
+}
