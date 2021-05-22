@@ -19,7 +19,7 @@ const columns = [
   { field: 'Description', headerName: 'Description', flex: 0.5 },
 ];
 
-const filter_columns = ["Job", "Location", "Organization"];
+const filter_columns = ["Type", "Location", "Organization"];
 
 export default class App extends React.Component {
 
