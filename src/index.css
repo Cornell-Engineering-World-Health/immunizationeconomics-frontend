@@ -111,27 +111,13 @@ code {
   height: 50px!important;
   max-height: 105px!important;
   white-space: nowrap!important;
+  text-overflow: ellipsis!important;
   line-height: 18px!important;
   padding: 10px 0px 20px 10px!important;
 }
 
 .MuiDataGrid-cell:hover{
   cursor: pointer;
-}
-
-[role="columnheader"][aria-colindex="1"], [role="columnheader"][aria-colindex="2"] {
-  min-width: 250px!important;
-  max-width: 250px!important;
-}
-
-div[data-field="job"], div[aria-colindex="0"], div[data-field="location"], div[aria-colindex="1"] {
-  min-width: 250px!important;
-  max-width: 250px!important;
-}
-
-div[data-field="description"], div[aria-colindex="2"] {
-  min-width: 870px!important;
-  max-width: 870px!important;
 }
 
 .filter-bar {
